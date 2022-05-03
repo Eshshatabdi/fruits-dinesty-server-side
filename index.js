@@ -39,12 +39,12 @@ async function run() {
 
         app.put('/service/:id', async (req, res) => {
             const id = req.params.id;
-            const updateUser = req.body;
+            const updateItem = req.body;
             const filter = { _id: ObjectId(id) };
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
-                    quantity: updateUser.newQuantity
+                    quantity: updateItem.newQuantity
                 },
 
             };
@@ -53,6 +53,14 @@ async function run() {
 
 
         })
+
+
+        app.post('/service', async (req, res) => {
+            const newItem = req.body;
+            const result = await serviceCollection.insertOne(newItem);
+            res.send(result);
+        })
+
 
 
         app.delete('/service/:id', async (req, res) => {

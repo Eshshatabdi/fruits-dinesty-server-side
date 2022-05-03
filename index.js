@@ -44,13 +44,22 @@ async function run() {
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
-                    quantity: updateUser.quantity
+                    quantity: updateUser.newQuantity
                 },
 
             };
             const result = await serviceCollection.updateOne(filter, updateDoc, options);
             res.send(result)
 
+
+        })
+
+
+        app.delete('/service/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await serviceCollection.deleteOne(query);
+            res.send(result);
 
         })
 

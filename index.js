@@ -71,8 +71,9 @@ async function run() {
 
         })
         app.get('/service', async (req, res) => {
-            const email = req.query.email;
-            const query = { email: email };
+            const email = req.query.email
+            console.log(email);
+            const query = { supplierEmail: email };
             const result = await serviceCollection.find(query).toArray()
             res.send(result)
 

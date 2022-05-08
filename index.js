@@ -21,7 +21,7 @@ function varifyingJWT(req, res, next) {
         if (err) {
             return res.status(403).send({ message: 'forbidden access' })
         }
-        // console.log('decoded', decoded);
+
         req.decoded = decoded;
         next()
     })
